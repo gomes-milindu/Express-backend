@@ -47,17 +47,22 @@ export function loginUser(req,res){
                 console.log("User not found")
             }else{
                 if(user.password===req.body.password){
-                    res.json({
-                        "message": "Login Successful",
-                    })
-
+                    
                     const token = jwt.sign(
                         {
-                            
-                            
+                            firstName: user.firstName,
+                            lastName: user.lastName,
                             email: user.email,
                             role: user.role
-                        })
+                    },'JWT-SECRET-KEY',
+                    )
+
+                    res.json({
+                        "message": "Login Successful",
+                        "token": token,
+                        "user": user
+                        
+                    })
                 }
             }
             
