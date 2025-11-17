@@ -69,3 +69,16 @@ export function loginUser(req,res){
         }
     ).catch()
 }
+
+
+export function isAdmin(req,res){
+    if(req.User.role==null){
+        return false
+    }
+
+    if(req.User.role!=="admin"){
+        return false
+    }
+
+    return true
+}
