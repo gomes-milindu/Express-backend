@@ -1,14 +1,22 @@
 import express from "express"
 import mongoose from "mongoose"
+import User from "./models/userModel.js"
+import userRoute from "./routers/userRoute.js"
 
 const connectionString = "mongodb+srv://backend-clone:1234@cluster0.arkyzdz.mongodb.net/?appName=Cluster0"
 
+
 const app = express()
-app.use(5000,success)
+
+
+app.use(express.json())
+app.listen(5000,success)
+
 
 function success(){
     console.log("Succes is working")
 }
+
 
 mongoose.connect(connectionString).then(
     ()=>{
@@ -19,3 +27,8 @@ mongoose.connect(connectionString).then(
         console.log("DataBase Not Connected")
     }
 )
+
+
+
+app.use("/route1",userRoute)
+
